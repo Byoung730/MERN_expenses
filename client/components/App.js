@@ -7,14 +7,14 @@ import Delete from './Delete'
 export default class App extends React.Component {
   constructor() {
     super()
-    this.state = { selectedMonth: 'All', selectedYear: 2016, data: [] }
+    this.state = { selectedMonth: 'All', selectedYear: 2018, data: [] }
     this.getData = this.getData.bind(this)
   }
   componentDidMount() {
-    this.getData(this, '2016')
+    this.getData(this, '2018')
   }
   componentWillReceiveProps(nextProps) {
-    this.getData(this, '2016')
+    this.getData(this, '2018')
   }
   getData(ev, year) {
     axios.get('/getAll?month=All&year=' + year).then(function(response) {

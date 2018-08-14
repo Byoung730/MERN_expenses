@@ -37,7 +37,7 @@ class Add extends React.Component {
       description: '',
       amount: '',
       month: 'Jan',
-      year: 2016,
+      year: 2018,
       messageFromServer: ''
     })
   }
