@@ -4,27 +4,68 @@ import axios from 'axios'
 import Add from './Add'
 import Update from './Update'
 import Delete from './Delete'
+import { Tab, Tabs } from 'react-bootstrap'
+import YearTabsRouter from './tabs/yearTabsRouter'
+
 export default class App extends React.Component {
   constructor() {
     super()
-    this.state = { selectedMonth: 'All', selectedYear: 2018, data: [] }
+    this.state = {
+      selectedMonth: 'All',
+      selectedYear: 2016,
+      data: [],
+      activeTab: 2016
+    }
     this.getData = this.getData.bind(this)
   }
-  componentDidMount() {
-    this.getData(this, '2018')
-  }
   componentWillReceiveProps(nextProps) {
-    this.getData(this, '2018')
+    if (nextProps.history.location.search) {
+      var search = nextProps.history.location.search
+      search = search.substring(1)
+      var searchObj = JSON.parse(
+        '{"' +
+          decodeURI(search)
+            .replace(/"/g, '\\"')
+            .replace(/&/g, '","')
+            .replace(/=/g, '":"') +
+          '"}'
+      )
+      this.setState({ activeTab: parseInt(searchObj.year) })
+      this.setState({ selectedYear: searchObj.year })
+      this.setState({ selectedMonth: searchObj.month })
+      this.getData(this, searchObj.year, searchObj.month)
+    } else {
+      this.getData(this, 2016, 'All')
+    }
   }
-  getData(ev, year) {
-    axios.get('/getAll?month=All&year=' + year).then(function(response) {
-      ev.setState({ data: response.data })
-      ev.setState({ selectedYear: parseInt(year) })
+  componentDidMount() {
+    this.getData(this, 2016, 'All')
+  }
+  handleSelect(selectedTab) {
+    this.setState({
+      activeTab: selectedTab,
+      selectedYear: selectedTab
     })
+  }
+  getData(ev, year, month) {
+    axios
+      .get('/getAll?month=' + month + '&year=' + year)
+      .then(function(response) {
+        ev.setState({ data: response.data })
+        ev.setState({ selectedYear: parseInt(year) })
+        ev.setState({ selectedMonth: month })
+      })
   }
   render() {
     return (
       <div>
+        <Tabs activeKey={this.state.activeTab} onSelect={this.handleSelect}>
+          <Tab eventKey={2016} title={<YearTabsRouter year="2016" />} />
+          <Tab eventKey={2017} title={<YearTabsRouter year="2017" />} />
+          <Tab eventKey={2018} title={<YearTabsRouter year="2018" />} />
+          <Tab eventKey={2019} title={<YearTabsRouter year="2019" />} />
+          <Tab eventKey={2020} title={<YearTabsRouter year="2020" />} />
+        </Tabs>
         <Add
           selectedMonth={this.state.selectedMonth}
           selectedYear={this.state.selectedYear}
@@ -42,7 +83,7 @@ export default class App extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.data.map(function(exp) {
+            {this.state.data.map(exp => {
               return (
                 <tr>
                   <td className="counterCell" />
@@ -54,7 +95,7 @@ export default class App extends React.Component {
                     <Update expense={exp} />
                   </td>
                   <td className="button-col">
-                    <Delete id={exp._id} expense={exp} />
+                    <Delete expense={exp} />
                   </td>
                 </tr>
               )
