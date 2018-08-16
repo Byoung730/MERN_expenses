@@ -29,7 +29,7 @@ router.route('/update').post(function(req, res) {
     month: req.body.month,
     year: req.body.year
   }
-  console.log(doc)
+  console.log('This is the updated entry: ', doc)
   Expense.update({ _id: req.body._id }, doc, function(err, result) {
     if (err) {
       res.send(err)

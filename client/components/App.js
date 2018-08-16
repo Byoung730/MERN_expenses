@@ -12,9 +12,9 @@ export default class App extends React.Component {
     super()
     this.state = {
       selectedMonth: 'All',
-      selectedYear: 2016,
+      selectedYear: 2018,
       data: [],
-      activeTab: 2016
+      activeTab: 2018
     }
     this.getData = this.getData.bind(this)
   }
@@ -35,11 +35,11 @@ export default class App extends React.Component {
       this.setState({ selectedMonth: searchObj.month })
       this.getData(this, searchObj.year, searchObj.month)
     } else {
-      this.getData(this, 2016, 'All')
+      this.getData(this, 2018, 'All')
     }
   }
   componentDidMount() {
-    this.getData(this, 2016, 'All')
+    this.getData(this, 2018, 'All')
   }
   handleSelect(selectedTab) {
     this.setState({
@@ -60,8 +60,6 @@ export default class App extends React.Component {
     return (
       <div>
         <Tabs activeKey={this.state.activeTab} onSelect={this.handleSelect}>
-          <Tab eventKey={2016} title={<YearTabsRouter year="2016" />} />
-          <Tab eventKey={2017} title={<YearTabsRouter year="2017" />} />
           <Tab eventKey={2018} title={<YearTabsRouter year="2018" />} />
           <Tab eventKey={2019} title={<YearTabsRouter year="2019" />} />
           <Tab eventKey={2020} title={<YearTabsRouter year="2020" />} />

@@ -209,7 +209,7 @@ You can refer [to the React documentation](https://reactjs.org/docs/react-dom.ht
 This project supports a superset of the latest JavaScript standard.<br>
 In addition to [ES6](https://github.com/lukehoban/es6features) syntax features, it also supports:
 
-* [Exponentiation Operator](https://github.com/rwaldron/exponentiation-operator) (ES2016).
+* [Exponentiation Operator](https://github.com/rwaldron/exponentiation-operator) (ES2018).
 * [Async/await](https://github.com/tc39/ecmascript-asyncawait) (ES2017).
 * [Object Rest/Spread Properties](https://github.com/sebmarkbage/ecmascript-rest-spread) (stage 3 proposal).
 * [Dynamic import()](https://github.com/tc39/proposal-dynamic-import) (stage 3 proposal)
@@ -1269,7 +1269,7 @@ Then, on the server, you can replace `__SERVER_DATA__` with a JSON of real data 
 >Note: this feature is available with `react-scripts@0.3.0` and higher.<br>
 >[Read the migration guide to learn how to enable it in older projects!](https://github.com/facebookincubator/create-react-app/blob/master/CHANGELOG.md#migrating-from-023-to-030)
 
-Create React App uses [Jest](https://facebook.github.io/jest/) as its test runner. To prepare for this integration, we did a [major revamp](https://facebook.github.io/jest/blog/2016/09/01/jest-15.html) of Jest so if you heard bad things about it years ago, give it another try.
+Create React App uses [Jest](https://facebook.github.io/jest/) as its test runner. To prepare for this integration, we did a [major revamp](https://facebook.github.io/jest/blog/2018/09/01/jest-15.html) of Jest so if you heard bad things about it years ago, give it another try.
 
 Jest is a Node-based runner. This means that the tests always run in a Node environment and not in a real browser. This lets us enable fast iteration speed and prevent flakiness.
 
@@ -1620,11 +1620,11 @@ In contrast, **jsdom is not needed** for the following APIs:
 * [`TestUtils.createRenderer()`](https://facebook.github.io/react/docs/test-utils.html#shallow-rendering) (shallow rendering)
 * [`shallow()`](http://airbnb.io/enzyme/docs/api/shallow.html) in [Enzyme](http://airbnb.io/enzyme/index.html)
 
-Finally, jsdom is also not needed for [snapshot testing](http://facebook.github.io/jest/blog/2016/07/27/jest-14.html).
+Finally, jsdom is also not needed for [snapshot testing](http://facebook.github.io/jest/blog/2018/07/27/jest-14.html).
 
 ### Snapshot Testing
 
-Snapshot testing is a feature of Jest that automatically generates text snapshots of your components and saves them on the disk so if the UI output changes, you get notified without manually writing any assertions on the component output. [Read more about snapshot testing.](http://facebook.github.io/jest/blog/2016/07/27/jest-14.html)
+Snapshot testing is a feature of Jest that automatically generates text snapshots of your components and saves them on the disk so if the UI output changes, you get notified without manually writing any assertions on the component output. [Read more about snapshot testing.](http://facebook.github.io/jest/blog/2018/07/27/jest-14.html)
 
 ### Editor Integration
 
